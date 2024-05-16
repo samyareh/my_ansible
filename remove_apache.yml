@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+
+    - name: Install system updates for centos systems, http and php packages
+      yum:
+        name:
+          - httpd
+          - php
+        state: absent
+        update_cache: yes
+       #cache_valid_time: 3600
+      when:
+        - ansible_os_family == "RedHat"
+        - ansible_distribution == "CentOS"
+
+    - name: Install system updates for ubuntu systems, apache2 and php packages
+      apt:
+        name:
+          - apache2
+          - libapache2-mod-php
+        state: absent
+        update_cache: yes
+       #cache_valid_time: 3600
+      when:
+        - ansible_os_family == "Debian"
+        - ansible_distribution == "Ubuntu"
