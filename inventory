@@ -7,3 +7,6 @@
 
 [file_servers]
 30.40.50.3
+
+[workstations]
+30.40.50.80
